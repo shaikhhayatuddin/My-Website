@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain of Words and Hearts</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #2B2B2B; /* Grey black color */
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #hayat {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+        }
+        .falling {
+            position: absolute;
+            animation: fall linear infinite; 
+            font-size: 20px; /* Base font size */
+            opacity: 0.8; /* Initial opacity */
+            white-space: nowrap; /* Prevent words from wrapping */
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.2), /* Reduced white glow */
+                         0 0 5px rgba(255, 255, 255, 0.1); /* Dimmer white glow */
+            font-weight: bold; /* Bold text */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for style */
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="hayat">Hayat</div>
+    <script>
+        const words = [
+            'Tham', 
+            'thammo', 
+            'yeu em', 
+            'poop queen', 
+            'Anh yeu em', 
+            '💩', 
+            'zu', 
+            '🍑', 
+            'yeu em khong?',
+            'Mong',
+            'Em yeu Anh', 
+            'I love you', 
+            '❤️', 
+            'ham for tham', 
+            'chong yeu vo', 
+            '🍆',
+            'Do you wanna break up?',
+            'Anh muon em',
+            'Em met qua',
+            'Vo yeu chong',
+            'Em khong biet',
+            'Em di Ngu',
+            'Do you want to hear a news. I poop everyday now',
+            'Em khong biet',
+            'Hello anh',
+            'Anh oi',
+            'Hard mode',
+            'Em doi',
+            'I hate u',
+            'U'
+        ];
+
+        const colors = [
+            '#FF5733', // Red-Orange
+            '#FFC300', // Yellow
+            '#DAF7A6', // Light Green
+            '#33FF57', // Green
+            '#FF33A1', // Pink
+            '#FF9933'  // Orange
+        ];
+
+        function createFallingWord() {
+            const word = document.createElement('div');
+            const randomX = Math.random() * window.innerWidth;
+            word.className = 'falling';
+            word.style.left = randomX + 'px';
+            word.style.color = colors[Math.floor(Math.random() * colors.length)]; // Random color
+            word.innerText = words[Math.floor(Math.random() * words.length)]; // Random word
+
+            document.body.appendChild(word);
+
+            const fallDuration = Math.random() * 3 + 2; // Random fall duration
+            word.style.animationDuration = fallDuration + 's';
+
+            // Remove the element after it falls
+            word.addEventListener('animationend', () => {
+                word.remove();
+            });
+        }
+
+        setInterval(createFallingWord, 300); // Create a new falling word every 300ms
+    </script>
+</body>
+</html>
